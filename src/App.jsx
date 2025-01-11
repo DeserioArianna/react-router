@@ -1,20 +1,26 @@
 import Layout from './Layout';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage';
-import AboutPage from './AboutPage';
-import PostsPage from './PostsPage';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import PostsPage from './pages/PostsPage';
+import PostDetail from './pages/PostDetail';
+import CreatePost from './pages/CreatePost';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/posts">
+            <Route index element={<PostsPage />} />
+            <Route path=":id" element={<PostDetail />} />
+            <Route path= "create" element={<CreatePost />} />
+          </Route>
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
